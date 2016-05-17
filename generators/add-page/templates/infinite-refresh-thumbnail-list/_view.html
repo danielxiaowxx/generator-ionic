@@ -1,0 +1,44 @@
+<ion-view bindonce="$root.i18n" view-title="" class="">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            <i class="button button-icon icon ion-navicon"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content overflow-scroll="true" class="has-header no-tabs">
+
+        <!--上拉刷新-->
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <!--列表数据-->
+        <ion-list>
+
+            <a collection-repeat="item in dataList" class="item item-thumbnail-left item-text-wrap" ng-click="viewItemDetail(item)">
+                <img ng-src="{{item.thumbnail || $root.imgPlaceholderUrl}}">
+
+                <h2>{{item.title}}</h2>
+
+                <p>{{item.summary}}</p>
+            </a>
+
+        </ion-list>
+
+        <!--没有数据-->
+        <div ng-show="isNoData" class="padding no-records">
+            <p class="tip-content" bo-text="$root.i18n.noData"></p>
+        </div>
+
+        <!--下拉加载-->
+        <ion-infinite-scroll on-infinite="loadMore()"
+                             ng-if="!noMoreData"
+                             icon="ion-loading-c"
+                             distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,51 @@
+<ion-view bindonce="$root.i18n" view-title="" class="">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            <i class="button button-icon icon ion-navicon"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content overflow-scroll="true" class="has-header no-tabs">
+
+        <!--上拉刷新-->
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <!--列表数据-->
+        <ion-list>
+
+            <ion-item bindonce collection-repeat="item in dataList"
+                      ng-click="viewItemDetail(item)"
+                      on-hold="showActionSheet(item)"
+                      class="item-remove-animate item-avatar item-icon-right">
+
+                <img ng-src="{{item.image}}">
+                <h2 ng-bind="item.title"></h2>
+                <p>一行描述</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <ion-option-button class="button-assertive" ng-click="removeItem(item)">
+                    <span bo-text="$root.i18n.delete"></span>
+                </ion-option-button>
+            </ion-item>
+
+        </ion-list>
+
+        <!--没有数据-->
+        <div ng-show="isNoData" class="padding no-records">
+            <p class="tip-content" bo-text="$root.i18n.noData"></p>
+        </div>
+
+        <!--下拉加载-->
+        <ion-infinite-scroll on-infinite="loadMore()"
+                             ng-if="!noMoreData"
+                             icon="ion-loading-c"
+                             distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,13 @@
+{
+  "name": "<%= firstCapCamelAppName %>",
+  "dependencies": {
+    "ngCordova": "~0.1.26-alpha",
+    "lodash": "~4.12.0",
+    "angular-local-storage": "~0.2.7",
+    "angular-md5": "~0.1.10",
+    "stacktrace": "~0.6.4",
+    "ionic-scroll-sista": "~1.0.7",
+    "jquery": "~2.1.4",
+    "ion-image-lazy-load": "*"
+  }
+}
